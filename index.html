@@ -1,37 +1,941 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Niharika Rath</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 720px;
-      margin: 80px auto;
-      padding: 0 20px;
-      line-height: 1.6;
-      color: #111;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Niharika Rath — Astrophysics, gravitation, machine learning, space science, projects and writing.">
+<title>Niharika Rath | Astrophysics, Research & Writing</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf9f7;
+    --paper: #fffefd;
+    --ink: #171717;
+    --muted: #737373;
+    --soft: #a3a3a3;
+    --accent: #2f4f67;
+    --accent-dark: #21384a;
+    --accent-light: #e9eff3;
+    --line: #e6e2dc;
+    --tag: #f0ede8;
+    --max: 1080px;
+    --reading: 720px;
+    --shadow: 0 12px 40px rgba(25, 25, 25, 0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; }
+
+  .container {
+    width: min(calc(100% - 3rem), var(--max));
+    margin-inline: auto;
+  }
+
+  .reading-width {
+    width: min(calc(100% - 3rem), var(--reading));
+    margin-inline: auto;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 249, 247, 0.93);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nav-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.03rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus { color: var(--ink); }
+
+  .menu-button {
+    display: none;
+    border: 1px solid var(--line);
+    background: transparent;
+    padding: .45rem .7rem;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .hero {
+    padding: 7.5rem 0 6rem;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border: 1px solid rgba(47, 79, 103, .13);
+    border-radius: 50%;
+    right: -160px;
+    top: 30px;
+    box-shadow:
+      0 0 0 52px rgba(47,79,103,.025),
+      0 0 0 104px rgba(47,79,103,.018);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: .74rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+    gap: 5rem;
+    align-items: end;
+  }
+
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2.5rem, 6vw, 5.4rem);
+    line-height: 1.05;
+    font-weight: 400;
+    letter-spacing: -.035em;
+    max-width: 780px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-summary {
+    color: var(--muted);
+    max-width: 520px;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-side {
+    border-left: 1px solid var(--line);
+    padding-left: 2rem;
+  }
+
+  .hero-side p {
+    color: var(--muted);
+    font-size: .94rem;
+  }
+
+  .hero-side strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: .7rem 1rem;
+    border: 1px solid var(--ink);
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    transition: all .18s;
+  }
+
+  .button.primary {
+    background: var(--ink);
+    color: white;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0,0,0,.08);
+  }
+
+  .button.secondary {
+    border-color: var(--line);
+    color: var(--muted);
+    background: rgba(255,255,255,.55);
+  }
+
+  section {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-label {
+    font-size: .75rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .section-intro {
+    color: var(--muted);
+    max-width: 680px;
+    margin-top: .8rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 4rem;
+  }
+
+  .prose p + p { margin-top: 1.2rem; }
+
+  .fact-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .fact {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fact span {
+    display: block;
+    color: var(--muted);
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: .2rem;
+  }
+
+  .fact strong { font-weight: 500; }
+
+  .research-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 2.2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .research-card h3,
+  .project-card h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: .8rem;
+  }
+
+  .research-card p { color: var(--muted); }
+
+  .tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin-top: 1.4rem;
+  }
+
+  .tag {
+    background: var(--tag);
+    padding: .35rem .65rem;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    color: #626262;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    border: 1px solid var(--line);
+    background: var(--paper);
+    padding: 1.6rem;
+    text-decoration: none;
+    transition: transform .18s, box-shadow .18s, border-color .18s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: #d6d0c7;
+  }
+
+  .project-number {
+    color: var(--accent);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: .8rem;
+  }
+
+  .project-card p {
+    color: var(--muted);
+    font-size: .9rem;
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 1.2rem;
+    color: var(--accent);
+    font-size: .78rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 1.5rem;
+  }
+
+  .future-item {
+    padding: 1rem;
+    border: 1px dashed #d9d4cd;
+    color: var(--muted);
+    font-size: .84rem;
+  }
+
+  .blog-shell {
+    background: var(--paper);
+  }
+
+  .tabs-wrapper {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .tab-btn {
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: .4rem .9rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .78rem;
+    letter-spacing: .04em;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s;
+  }
+
+  .tab-btn:hover { color: var(--ink); border-color: var(--ink); }
+  .tab-btn.active { background: var(--ink); border-color: var(--ink); color: white; }
+
+  .post-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1.5rem;
+    padding: 1.45rem 0;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+
+  .post-item:first-child { border-top: 1px solid var(--line); }
+  .post-item:hover { opacity: .68; }
+  .post-item.hidden { display: none; }
+
+  .post-meta {
+    color: var(--muted);
+    font-size: .74rem;
+    letter-spacing: .04em;
+  }
+
+  .post-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    margin-bottom: .25rem;
+  }
+
+  .post-excerpt { color: var(--muted); font-size: .86rem; }
+
+  .post-tag {
+    display: inline-block;
+    margin-top: .6rem;
+    background: var(--tag);
+    color: #777;
+    padding: .18rem .5rem;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .article-view {
+    display: none;
+    padding: 5rem 0;
+  }
+
+  .article-view.visible { display: block; }
+
+  .back-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+  }
+
+  .article-tag {
+    color: var(--accent);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .article-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .article-byline {
+    color: var(--muted);
+    font-size: .8rem;
+    margin: 1rem 0 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .article-body {
+    font-family: 'Libre Baskerville', serif;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+
+  .article-body p { margin-bottom: 1.5rem; }
+
+  .article-body h2 {
+    color: var(--ink);
+    font-size: 1.25rem;
+    margin: 2.6rem 0 1rem;
+  }
+
+  .article-body blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.4rem;
+    margin: 2rem 0;
+    color: #666;
+    font-style: italic;
+  }
+
+  .contact-panel {
+    text-align: center;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .contact-panel h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3.3rem);
+  }
+
+  .contact-panel p {
+    color: var(--muted);
+    margin: 1rem auto 0;
+    max-width: 560px;
+  }
+
+  footer {
+    padding: 2rem 0;
+    color: var(--muted);
+    font-size: .76rem;
+    letter-spacing: .04em;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-list, .article-view.visible { animation: fadeUp .3s ease both; }
+
+  @media (max-width: 850px) {
+    .hero-grid,
+    .about-grid,
+    .section-head {
+      grid-template-columns: 1fr;
     }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-      margin-right: 12px;
+
+    .hero-side {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+      padding-left: 0;
+      padding-top: 1.5rem;
     }
-  </style>
+
+    .projects-grid { grid-template-columns: 1fr; }
+    .future-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 680px) {
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 1.2rem 1.5rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links.open { display: flex; }
+    .menu-button { display: block; }
+
+    .hero { padding: 5.5rem 0 4rem; }
+    section { padding: 4.2rem 0; }
+    .future-grid { grid-template-columns: 1fr; }
+    .post-item { grid-template-columns: 1fr; gap: .45rem; }
+    .footer-row { flex-direction: column; gap: .5rem; }
+  }
+</style>
 </head>
+
 <body>
-  <h1>Niharika Rath</h1>
-  <p>MSc Astrophysics, Queen Mary University of London</p>
+<nav>
+  <div class="container nav-inner">
+    <a class="nav-logo" href="#home" onclick="showMain()">Niharika Rath</a>
+    <button class="menu-button" aria-label="Open navigation" onclick="toggleMenu()">Menu</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" onclick="showMain()">About</a></li>
+      <li><a href="#research" onclick="showMain()">Research</a></li>
+      <li><a href="#projects" onclick="showMain()">Projects</a></li>
+      <li><a href="#writing" onclick="showMain()">Writing</a></li>
+      <li><a href="#contact" onclick="showMain()">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <p>
-    Interests: Cosmology, gravitation, black holes.
-  </p>
+<main id="main-view">
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Astrophysics · Gravitation · Machine Learning</p>
+        <h1>Exploring the universe through <em>physics, code, and careful questions.</em></h1>
+        <p class="hero-summary">
+          I am Niharika Rath, an MSc Astrophysics student working across general relativity,
+          post-Newtonian gravity, space science, machine learning, and scientific communication.
+        </p>
 
-  <p>
-    <a href="#">CV</a>
-    <a href="#">Projects</a>
-    <a href="#">Writing</a>
-    <a href="#">GitHub</a>
-  </p>
+        <div class="button-row">
+          <a class="button primary" href="#projects">View my projects</a>
+          <a class="button secondary" href="https://github.com/niharikarath" target="_blank" rel="noopener">View my GitHub</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/niharika-rath-b6408b217" target="_blank" rel="noopener">Connect on LinkedIn</a>
+          <a class="button secondary" href="assets/cv/niharika-rath-cv.pdf" target="_blank">Download CV</a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <p><strong>Currently:</strong> MSc Astrophysics at Queen Mary University of London.</p>
+        <p style="margin-top:1rem;"><strong>Research focus:</strong> post-Newtonian effects, PPN gravity, classical tests of general relativity, binary pulsars, and Brans–Dicke theory.</p>
+      </aside>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">About</p>
+        <div>
+          <h2 class="section-title">Physics, computation, and the patience to sit with difficult problems.</h2>
+          <p class="section-intro">
+            My work sits at the intersection of theoretical astrophysics, scientific computing,
+            machine learning, and outreach.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="prose">
+          <p>
+            I am studying for an MSc in Astrophysics at Queen Mary University of London,
+            after completing a BSc in Physics with Astrophysics and Cosmology at King's College London.
+          </p>
+          <p>
+            I am especially interested in gravitation, cosmology, machine learning for physical systems,
+            space weather, and the ways computation can make difficult physics more visible and testable.
+          </p>
+          <p>
+            Alongside research and coding, I care deeply about science communication and outreach.
+            I have worked on space-science education, student workshops, public-facing talks, and projects
+            designed to make technical ideas more accessible without flattening the physics.
+          </p>
+        </div>
+
+        <div class="fact-list">
+          <div class="fact">
+            <span>Current degree</span>
+            <strong>MSc Astrophysics, QMUL</strong>
+          </div>
+          <div class="fact">
+            <span>Undergraduate degree</span>
+            <strong>BSc Physics with Astrophysics & Cosmology, King's College London</strong>
+          </div>
+          <div class="fact">
+            <span>Interests</span>
+            <strong>Gravitation, cosmology, ML, space science</strong>
+          </div>
+          <div class="fact">
+            <span>Beyond research</span>
+            <strong>Outreach, scientific writing, visual explanation</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Research</p>
+        <div>
+          <h2 class="section-title">Post-Newtonian Effects and Tests of Gravity</h2>
+          <p class="section-intro">
+            My MSc dissertation explores how weak-field gravity is described, tested, constrained,
+            and compared across general relativity and alternative theories.
+          </p>
+        </div>
+      </div>
+
+      <article class="research-card">
+        <h3>Dissertation focus</h3>
+        <p>
+          I am working through the post-Newtonian and parametrized post-Newtonian formalisms,
+          classical Solar-System tests of gravity, binary-pulsar applications, and the weak-field
+          limit of Brans–Dicke theory. The project combines analytical derivations with Mathematica
+          calculations and visualisations.
+        </p>
+
+        <div class="tag-grid">
+          <span class="tag">Post-Newtonian formalism</span>
+          <span class="tag">PPN parameters</span>
+          <span class="tag">Light deflection</span>
+          <span class="tag">Shapiro time delay</span>
+          <span class="tag">Perihelion precession</span>
+          <span class="tag">Binary pulsars</span>
+          <span class="tag">Brans–Dicke gravity</span>
+          <span class="tag">Mathematica</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Projects</p>
+        <div>
+          <h2 class="section-title">Selected computational and scientific work</h2>
+          <p class="section-intro">
+            A growing collection of projects spanning astrophysics, machine learning,
+            scientific modelling, and interactive web development.
+          </p>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <a class="project-card" href="https://github.com/niharikarath/ai-in-astrophysics-projects" target="_blank" rel="noopener">
+          <div class="project-number">01 · Featured repository</div>
+          <h3>AI in Astrophysics and Space Science</h3>
+          <p>
+            Eight projects covering habitable-world classification, solar-wind geoeffectiveness,
+            GRACE atmospheric-density prediction, radiation-belt electron flux, Neural Additive Models,
+            F10.7 prediction from SDO imagery, magnetic-field reconstruction with PINNs, and radial-diffusion
+            coefficient estimation.
+          </p>
+          <span class="project-link">View repository →</span>
+        </a>
+
+        <a class="project-card" href="https://github.com/niharikarath/Photobooth-6Months" target="_blank" rel="noopener">
+          <div class="project-number">02 · Interactive web app</div>
+          <h3>Streamlit Photobooth</h3>
+          <p>
+            A personalised browser-based photobooth built using Python, Streamlit,
+            image processing, and custom visual assets.
+          </p>
+          <span class="project-link">View repository →</span>
+        </a>
+      </div>
+
+      <div class="future-grid">
+        <div class="future-item">Mars image-classification CNN</div>
+        <div class="future-item">BAT volatility forecasting with an LSTM</div>
+        <div class="future-item">Open-cluster photometry and colour–magnitude diagrams</div>
+        <div class="future-item">HH 212 jet proper-motion analysis</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="writing" class="blog-shell">
+    <div class="reading-width">
+      <div class="section-head" style="grid-template-columns:1fr;">
+        <div>
+          <p class="section-label">Writing</p>
+          <h2 class="section-title">Notes from learning physics slowly</h2>
+          <p class="section-intro">
+            Essays and worked explanations on the ideas I am studying — especially general relativity,
+            post-Newtonian gravity, cosmology, machine learning, and the process of learning physics.
+          </p>
+        </div>
+      </div>
+
+      <div class="tabs-wrapper">
+        <button class="tab-btn active" onclick="filterPosts('all', this)">All</button>
+        <button class="tab-btn" onclick="filterPosts('gravity', this)">Gravity</button>
+        <button class="tab-btn" onclick="filterPosts('astrophysics', this)">Astrophysics</button>
+        <button class="tab-btn" onclick="filterPosts('machine-learning', this)">Machine Learning</button>
+        <button class="tab-btn" onclick="filterPosts('learning', this)">Learning</button>
+      </div>
+
+      <div id="posts-list" class="post-list"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-panel">
+      <p class="section-label">Contact</p>
+      <h2>Interested in physics, research, or a good difficult question?</h2>
+      <p>
+        You can find my work on GitHub, connect with me on LinkedIn,
+        or follow along as I publish new notes and projects.
+      </p>
+      <div class="button-row" style="justify-content:center;">
+        <a class="button primary" href="https://github.com/niharikarath" target="_blank" rel="noopener">GitHub</a>
+        <a class="button secondary" href="https://www.linkedin.com/in/niharika-rath-b6408b217" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="article-view" id="article-view">
+  <div class="reading-width">
+    <button class="back-btn" onclick="showMain()">← Back to writing</button>
+    <div class="article-tag" id="art-tag"></div>
+    <h1 class="article-title" id="art-title"></h1>
+    <div class="article-byline" id="art-byline"></div>
+    <div class="article-body" id="art-body"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span id="year"></span> Niharika Rath</span>
+    <span>Built with HTML, CSS, JavaScript, and too many open physics tabs.</span>
+  </div>
+</footer>
+
+<script>
+const posts = [
+  {
+    id: 1,
+    tag: "gravity",
+    date: "Coming soon",
+    title: "From the PPN photon equation of motion to light deflection",
+    excerpt: "A step-by-step account of how the weak-field metric leads to the bending of light.",
+    body: `
+      <p>This article will develop the connection between the parametrized post-Newtonian metric, the photon equation of motion, and the observable deflection angle.</p>
+      <p>The goal is not merely to quote the famous result, but to understand which metric terms contribute, why the parameter γ appears, and how the impact parameter enters the final expression.</p>
+      <h2>What the derivation needs</h2>
+      <p>We begin with the weak-field metric, impose the null condition, obtain the spatial acceleration of the photon, and integrate the transverse component along the unperturbed trajectory.</p>
+      <blockquote>The useful question is not only “what is the answer?” but “which part of the geometry produced it?”</blockquote>
+      <p>This post is currently being developed from my dissertation notes.</p>
+    `
+  },
+  {
+    id: 2,
+    tag: "gravity",
+    date: "Coming soon",
+    title: "What does it mean to constrain a theory of gravity?",
+    excerpt: "Parameters, observations, confidence intervals, and why successful theories are still tested.",
+    body: `
+      <p>To constrain a theory is to use observations to limit the values of its free parameters, or to rule out parts of the theory's parameter space.</p>
+      <p>In the PPN framework, many metric theories of gravity can be compared through a common set of parameters. Solar-System experiments, pulsar timing, and cosmological observations then place bounds on deviations from general relativity.</p>
+      <h2>Why constrain general relativity too?</h2>
+      <p>General relativity has passed a remarkable range of tests, but every new physical regime is also a new opportunity to check where its assumptions remain valid.</p>
+    `
+  },
+  {
+    id: 3,
+    tag: "gravity",
+    date: "Coming soon",
+    title: "Brans–Dicke gravity in the weak-field limit",
+    excerpt: "A guided derivation of the scalar field, gauge choice, Ricci tensor, and post-Newtonian metric.",
+    body: `
+      <p>Brans–Dicke theory adds a dynamical scalar field to the gravitational sector. In the weak-field limit, both the metric and scalar field are expanded around background values.</p>
+      <p>This article will track the geometry explicitly: inverse metric, Christoffel symbols, linearised Ricci tensor, scalar-field equation, gauge condition, and the resulting metric coefficients.</p>
+    `
+  },
+  {
+    id: 4,
+    tag: "machine-learning",
+    date: "Coming soon",
+    title: "What a Physics-Informed Neural Network is really doing",
+    excerpt: "Data loss, PDE loss, automatic differentiation, and why the network can still learn the wrong physics.",
+    body: `
+      <p>A Physics-Informed Neural Network is not given physics as a vague preference. The governing equation becomes part of the optimisation problem through a residual evaluated by automatic differentiation.</p>
+      <p>That sounds neat — and it is — but the balance between data loss, PDE loss, scaling, regularisation, and boundary information can determine whether the model learns a useful solution or a trivial one.</p>
+    `
+  },
+  {
+    id: 5,
+    tag: "learning",
+    date: "Coming soon",
+    title: "Why I sit with physics problems for a long time",
+    excerpt: "On not being the fastest person in the room, and why depth can matter more than speed.",
+    body: `
+      <p>I have never been someone who solves every mathematical problem immediately. But unfinished problems tend to remain active in the back of my mind.</p>
+      <p>Sometimes reading more helps. Sometimes the real work is simply staying with the question long enough for its structure to become visible.</p>
+      <h2>Understanding after the answer</h2>
+      <p>Once I do reach a solution, I often return to it: looking for a faster route, a cleaner derivation, or another way to explain what happened.</p>
+    `
+  }
+];
+
+function renderPosts(filter = "all") {
+  const container = document.getElementById("posts-list");
+  container.innerHTML = "";
+
+  posts.forEach(post => {
+    const hidden = filter !== "all" && post.tag !== filter;
+    const el = document.createElement("a");
+    el.className = "post-item" + (hidden ? " hidden" : "");
+    el.href = "#";
+    el.innerHTML = `
+      <div class="post-meta">${post.date}</div>
+      <div>
+        <div class="post-title">${post.title}</div>
+        <div class="post-excerpt">${post.excerpt}</div>
+        <span class="post-tag">${post.tag.replace("-", " ")}</span>
+      </div>
+    `;
+    el.addEventListener("click", event => {
+      event.preventDefault();
+      openPost(post.id);
+    });
+    container.appendChild(el);
+  });
+}
+
+function filterPosts(tag, button) {
+  document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+  button.classList.add("active");
+  renderPosts(tag);
+}
+
+function openPost(id) {
+  const post = posts.find(item => item.id === id);
+  if (!post) return;
+
+  document.getElementById("main-view").style.display = "none";
+  document.getElementById("art-tag").textContent = post.tag.replace("-", " ");
+  document.getElementById("art-title").textContent = post.title;
+  document.getElementById("art-byline").textContent = `${post.date} · Niharika Rath`;
+  document.getElementById("art-body").innerHTML = post.body;
+  document.getElementById("article-view").classList.add("visible");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showMain() {
+  document.getElementById("main-view").style.display = "block";
+  document.getElementById("article-view").classList.remove("visible");
+  document.getElementById("nav-links").classList.remove("open");
+}
+
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("open");
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+renderPosts();
+</script>
 </body>
 </html>
