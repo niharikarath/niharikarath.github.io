@@ -19,9 +19,9 @@
     --ink: #171717;
     --muted: #737373;
     --soft: #a3a3a3;
-    --accent: #2f4f67;
-    --accent-dark: #21384a;
-    --accent-light: #e9eff3;
+    --accent: #747474;
+    --accent-dark: #555555;
+    --accent-light: #eeeeec;
     --line: #e6e2dc;
     --tag: #f0ede8;
     --max: 1080px;
@@ -107,7 +107,7 @@
   }
 
   .hero {
-    padding: 7.5rem 0 6rem;
+    padding: 3.5rem 0 3rem;
     border-bottom: 1px solid var(--line);
     position: relative;
     overflow: hidden;
@@ -118,13 +118,13 @@
     position: absolute;
     width: 420px;
     height: 420px;
-    border: 1px solid rgba(47, 79, 103, .13);
+    border: 1px solid rgba(116, 116, 116, .13);
     border-radius: 50%;
     right: -160px;
     top: 30px;
     box-shadow:
-      0 0 0 52px rgba(47,79,103,.025),
-      0 0 0 104px rgba(47,79,103,.018);
+      0 0 0 52px rgba(116,116,116,.025),
+      0 0 0 104px rgba(116,116,116,.018);
     pointer-events: none;
   }
 
@@ -140,14 +140,14 @@
   .hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
-    gap: 5rem;
+    gap: 3.5rem;
     align-items: end;
   }
 
   .hero h1 {
     font-family: 'Libre Baskerville', serif;
-    font-size: clamp(2.5rem, 6vw, 5.4rem);
-    line-height: 1.05;
+    font-size: clamp(2.35rem, 5vw, 4.5rem);
+    line-height: 1.02;
     font-weight: 400;
     letter-spacing: -.035em;
     max-width: 780px;
@@ -162,7 +162,7 @@
     color: var(--muted);
     max-width: 520px;
     font-size: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 1.15rem;
   }
 
   .hero-side {
@@ -184,7 +184,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: .75rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   .button {
@@ -571,7 +571,7 @@
     .nav-links.open { display: flex; }
     .menu-button { display: block; }
 
-    .hero { padding: 5.5rem 0 4rem; }
+    .hero { padding: 3.8rem 0 3rem; }
     section { padding: 4.2rem 0; }
     .future-grid { grid-template-columns: 1fr; }
     .post-item { grid-template-columns: 1fr; gap: .45rem; }
